@@ -16,6 +16,17 @@ execute "set locale" do
     dpkg-reconfigure locales
     update-locale LANGUAGE=en_US.UTF-8 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
   EOC
+  not_if { `locale | grep UTF-8` } 
+end
+
+gem_package "ruby-shadow" do
+    action :install
+end
+
+include_recipe "openssl"
+user vagrant do
+  password `openssl -1 "password"`.strip
+  action :modify
 end
 
 [
@@ -30,12 +41,11 @@ end
   "aspell",
   "binutils",
   "bzip2",
-  "chromium",
+  "chromium-browser",
   "cryptsetup",
   "curl",
   "filezilla",
   "firefox",
-  "flashplugin",
   "fontconfig",
   "fontsproto",
   "freetype2",
@@ -61,6 +71,7 @@ end
   "ttf-droid",
   "ttf-freefont",
   "ttf-inconsolata",
+  "ubuntu-restricted-extras",
   "vim",
   "wget",
   "whois",
@@ -71,9 +82,10 @@ end
   "xterm",
   "zip"
 ].each do |p|
-  package p
-  retries 5
-  action :upgrade
+  package p do
+    retries 5
+    action :upgrade
+  end
 end
 
 [
