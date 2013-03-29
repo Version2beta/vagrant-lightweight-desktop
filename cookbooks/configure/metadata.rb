@@ -1,0 +1,6 @@
+name             "desktop"
+maintainer       "Rob Martin"
+maintainer_email "rob@tartansolutions.com"
+license          "proprietary"
+description      "configures a desktop environment"
+version          "0.1"
