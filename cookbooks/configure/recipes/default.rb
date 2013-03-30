@@ -24,8 +24,8 @@ gem_package "ruby-shadow" do
 end
 
 include_recipe "openssl"
-user vagrant do
-  password `openssl -1 "password"`.strip
+user "vagrant" do
+  password `openssl passwd -1 "password"`.strip
   action :modify
 end
 
@@ -47,38 +47,30 @@ end
   "filezilla",
   "firefox",
   "fontconfig",
-  "fontsproto",
-  "freetype2",
   "fuse",
   "git",
   "gnome-terminal",
-  "gnu-netcat",
   "gnupg",
-  "gnutls",
   "gzip",
-  "jre7-openjdk",
-  "jre7-openjdk-headless",
   "mcabber",
-  "net-tools",
   "openbox",
-  "openssh",
+  "openjdk-7-jdk",
+  "openjdk-7-jre-headless",
   "pcmanfm",
-  "pyxdg",
+  "python-xdg",
   "rsync",
   "sudo",
   "tmux",
+  "traceroute",
   "ttf-dejavu",
   "ttf-droid",
-  "ttf-freefont",
   "ttf-inconsolata",
   "ubuntu-restricted-extras",
   "vim",
   "wget",
   "whois",
-  "xfe",
-  "xorg-server",
+  "xorg",
   "xorg-xinit",
-  "xorg-xrandr",
   "xterm",
   "zip"
 ].each do |p|
