@@ -70,7 +70,6 @@ end
   "wget",
   "whois",
   "xorg",
-  "xorg-xinit",
   "xterm",
   "zip"
 ].each do |p|

@@ -7,6 +7,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "./cookbooks"
     chef.add_recipe "apt"
-    chef.add_recipe "configure"
+    chef.add_recipe "lightweight-desktop"
   end
 end
