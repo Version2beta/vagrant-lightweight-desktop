@@ -4,8 +4,8 @@ A lightweight Openbox desktop installation for Ubuntu 12.04
 
 ## Requires
 
-[VirtualBox](http://www.virtualbox.org)
-[Vagrant v1.0.x](http://vagrantup.com)
+* [VirtualBox](http://www.virtualbox.org)
+* [Vagrant v1.0.x](http://vagrantup.com)
 
 ## Installation
 
