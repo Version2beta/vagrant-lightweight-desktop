@@ -86,10 +86,10 @@ end
   end
 end
 
+include_recipe "openssl"
 gem_package "ruby-shadow" do
     action :install
 end
-include_recipe "openssl"
 user "vagrant" do
   password `openssl passwd -1 "password"`.strip
   action :modify
