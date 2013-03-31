@@ -4,6 +4,7 @@
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.boot_mode = :gui
+  config.vm.share_folder "shared", "/home/vagrant/shared", "./shared"
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "./cookbooks"
     chef.add_recipe "apt"
