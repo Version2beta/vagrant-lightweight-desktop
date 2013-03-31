@@ -44,6 +44,7 @@ end
   "chromium-browser",
   "cryptsetup",
   "curl",
+  "dkms",
   "filezilla",
   "firefox",
   "fontconfig",
@@ -67,6 +68,7 @@ end
   "ttf-inconsolata",
   "ubuntu-restricted-extras",
   "vim",
+  "virtualbox-guest-additions",
   "wget",
   "whois",
   "xorg",
@@ -92,6 +94,18 @@ end
   python_pip p do
     action :upgrade
   end
+end
+
+cookbook_file "/home/vagrant/dotfiles.tgz" do
+  user "vagrant"
+  group "vagrant"
+  source "dotfiles.tgz"
+end
+execute "untar dotfiles into ~vagrant" do
+  cwd "/home/vagrant"
+  user "vagrant"
+  group "vagrant"
+  command "tar xzf dotfiles.tgz"
 end
 
 bash "reboot" do
