@@ -71,6 +71,10 @@ end
   end
 end
 
+gem_package "ruby-shadow" do
+    action :install
+end
+
 [
   "BeautifulSoup",
   "dingus",
@@ -87,9 +91,12 @@ end
 end
 
 include_recipe "openssl"
-gem_package "ruby-shadow" do
-    action :install
+
+bash "reboot" do
+  code "( sleep 5; reboot -f ) &"
+  only_if { ::File.exists?("/var/run/reboot-required") }
 end
+
 user "vagrant" do
   password `openssl passwd -1 "password"`.strip
   action :modify
@@ -107,7 +114,3 @@ execute "untar dotfiles into ~vagrant" do
   command "tar xzf dotfiles.tgz"
 end
 
-bash "reboot" do
-  code "( sleep 5; reboot -f ) &"
-  only_if { ::File.exists?("/var/run/reboot-required") }
-end
