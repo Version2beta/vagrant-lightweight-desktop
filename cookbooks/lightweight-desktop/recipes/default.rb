@@ -19,16 +19,6 @@ execute "set locale" do
   not_if { `locale | grep UTF-8` } 
 end
 
-gem_package "ruby-shadow" do
-    action :install
-end
-
-include_recipe "openssl"
-user "vagrant" do
-  password `openssl passwd -1 "password"`.strip
-  action :modify
-end
-
 [
   "build-essential",
   "python"
@@ -94,6 +84,15 @@ end
   python_pip p do
     action :upgrade
   end
+end
+
+gem_package "ruby-shadow" do
+    action :install
+end
+include_recipe "openssl"
+user "vagrant" do
+  password `openssl passwd -1 "password"`.strip
+  action :modify
 end
 
 cookbook_file "/home/vagrant/dotfiles.tgz" do
