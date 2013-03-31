@@ -3,6 +3,7 @@
 
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.boot_mode = :gui
   config.vm.share_folder "shared", "/home/vagrant/shared", "./shared"
   config.vm.provision :chef_solo do |chef|
