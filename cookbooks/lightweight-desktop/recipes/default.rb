@@ -67,7 +67,7 @@ end
   "ttf-droid",
   "ttf-inconsolata",
   "ubuntu-restricted-extras",
-  "vim",
+  "gvim",
   "virtualbox-guest-additions",
   "wget",
   "whois",
