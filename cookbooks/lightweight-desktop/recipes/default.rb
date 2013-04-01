@@ -7,11 +7,6 @@
 
 # execute 'DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade'
 
-gem_package "ruby-shadow" do
-    action :nothing
-end.run_action(:install)
-Gem.clear_paths
-
 execute "set locale" do
   command <<-EOC
     export LANGUAGE="en_US.UTF-8"
@@ -48,6 +43,7 @@ end
   "gnome-terminal",
   "gnupg",
   "gzip",
+  "libshadow-ruby1.8",
   "mcabber",
   "openbox",
   "openjdk-7-jdk",
@@ -92,12 +88,6 @@ end
 end
 
 include_recipe "openssl"
-
-bash "reboot" do
-  code "( sleep 5; reboot -f ) &"
-  only_if { ::File.exists?("/var/run/reboot-required") }
-end
-
 user "vagrant" do
   password `openssl passwd -1 "password"`.strip
   action :modify
@@ -114,4 +104,9 @@ execute "untar dotfiles into ~vagrant" do
   group "vagrant"
   command "tar xzf dotfiles.tgz"
 end
+
+#bash "reboot" do
+#  code "( sleep 5; reboot -f ) &"
+#  only_if { ::File.exists?("/var/run/reboot-required") }
+#end
 
