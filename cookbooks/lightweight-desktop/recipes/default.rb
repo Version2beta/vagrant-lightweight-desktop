@@ -7,6 +7,11 @@
 
 # execute 'DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade'
 
+gem_package "ruby-shadow" do
+    action :nothing
+end.run_action(:install)
+Gem.clear_paths
+
 execute "set locale" do
   command <<-EOC
     export LANGUAGE="en_US.UTF-8"
@@ -69,10 +74,6 @@ end
     retries 5
     action :upgrade
   end
-end
-
-gem_package "ruby-shadow" do
-    action :install
 end
 
 [
