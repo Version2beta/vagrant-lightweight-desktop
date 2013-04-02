@@ -43,7 +43,7 @@ end
   "gnome-terminal",
   "gnupg",
   "gzip",
-  "libshadow-ruby1.8",
+  "linux-headers-generic",
   "mcabber",
   "openbox",
   "openjdk-7-jdk",
@@ -88,6 +88,9 @@ end
 end
 
 include_recipe "openssl"
+package_gem "ruby-shadow" do
+  action :install
+end
 user "vagrant" do
   password `openssl passwd -1 "password"`.strip
   action :modify
