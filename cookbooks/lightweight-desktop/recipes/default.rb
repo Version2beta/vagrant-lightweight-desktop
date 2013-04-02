@@ -88,7 +88,7 @@ end
 end
 
 include_recipe "openssl"
-package_gem "ruby-shadow" do
+gem_package "ruby-shadow" do
   action :install
 end
 user "vagrant" do
